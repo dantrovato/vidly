@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { getMovies } from "../services/fakeMovieService";
+import Like from "./common/like";
 
 class Movies extends Component {
   state = {
@@ -9,8 +10,20 @@ class Movies extends Component {
 
   handleDelete = (movie) => {
     const movies = this.state.movies.filter((m) => m._id !== movie._id);
-    console.log("fava");
     this.setState({ movies: movies });
+  };
+
+  handleLike = (movie) => {
+    // this clones the original movies array
+    const movies = [...this.state.movies];
+    // find index of that object
+    const index = movies.indexOf(movie);
+    // clone the movie object
+    movies[index] = { ...movies[index] };
+    // toggle the liked boolean
+    movies[index].liked = !movies[index].liked;
+    // set state with modified clone of original movies array
+    this.setState({ movies });
   };
 
   render() {
@@ -38,6 +51,14 @@ class Movies extends Component {
                 <td>{movie.genre.name}</td>
                 <td>{movie.numberInStock}</td>
                 <td>{movie.dailyRentalRate}</td>
+                <td>
+                  {
+                    <Like
+                      liked={movie.liked}
+                      onClick={() => this.handleLike(movie)}
+                    />
+                  }
+                </td>
                 <td>
                   <button
                     onClick={() => this.handleDelete(movie)}

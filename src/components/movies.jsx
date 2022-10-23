@@ -7,7 +7,8 @@ import Pagination from "./common/pagination";
 class Movies extends Component {
   state = {
     movies: getMovies(),
-    pageSize: 10,
+    pageSize: 4,
+    currentPage: 1,
   };
 
   handleDelete = (movie) => {
@@ -29,7 +30,7 @@ class Movies extends Component {
   };
 
   handlePageChange = (page) => {
-    console.log(page);
+    this.setState({ currentPage: page });
   };
 
   render() {
@@ -38,6 +39,7 @@ class Movies extends Component {
     }
 
     const { length: count } = this.state.movies;
+    const { pageSize, currentPage } = this.state;
 
     return (
       <React.Fragment>
@@ -80,10 +82,10 @@ class Movies extends Component {
           </tbody>
         </table>
         <Pagination
-          movies={this.state.moviesmovies}
           itemsCount={count}
-          pageSize={this.state.pageSize}
-          onPageChange={() => this.handlePageChange}
+          pageSize={pageSize}
+          onPageChange={this.handlePageChange}
+          currentPage={currentPage}
         />
       </React.Fragment>
     );

@@ -46,7 +46,7 @@ import _ from "lodash";
 
 // export default Pagination;
 
-const Pagination = ({ itemsCount, pageSize }) => {
+const Pagination = ({ itemsCount, pageSize, currentPage, onPageChange }) => {
   // get number of pages by dividing the number of items (9) by the page size (4) === 2.25
   const pagesCount = Math.ceil(itemsCount / pageSize);
 
@@ -54,12 +54,19 @@ const Pagination = ({ itemsCount, pageSize }) => {
 
   // use lodash to get an array of numbers from (page) 1 to pages count
   const pages = _.range(1, pagesCount + 1);
+
+  console.log(currentPage);
   return (
     <nav aria-label="Page navigation">
       <ul className="pagination">
         {pages.map((page) => (
-          <li className="page-item" key={page}>
-            <a className="page-link">{page}</a>
+          <li
+            className={page === currentPage ? "page-item active" : "page-item"}
+            key={page}
+          >
+            <a className="page-link" onClick={() => onPageChange(page)}>
+              {page}
+            </a>
           </li>
         ))}
       </ul>

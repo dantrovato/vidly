@@ -4,6 +4,7 @@ import { getMovies } from "../services/fakeMovieService";
 import Like from "./common/like";
 import Pagination from "./common/pagination";
 import { paginate } from "../utils/paginate";
+import PropTypes from "prop-types";
 
 class Movies extends Component {
   state = {
@@ -36,10 +37,9 @@ class Movies extends Component {
 
   render() {
     const { length: count } = this.state.movies;
-    let { pageSize, currentPage, movies: allMovies} = this.state;
+    let { pageSize, currentPage, movies: allMovies } = this.state;
 
     if (count === 0) return <p>There are no movies in the database.</p>;
-    
 
     const movies = paginate(allMovies, currentPage, pageSize);
 

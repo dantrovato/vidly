@@ -55,7 +55,6 @@ const Pagination = ({ itemsCount, pageSize, currentPage, onPageChange }) => {
   // use lodash to get an array of numbers from (page) 1 to pages count
   const pages = _.range(1, pagesCount + 1);
 
-  console.log(currentPage);
   return (
     <nav aria-label="Page navigation">
       <ul className="pagination">

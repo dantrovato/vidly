@@ -41,14 +41,8 @@ class Movies extends Component {
     this.setState({ currentPage: page });
   };
 
-  handleGenreChange = (event) => {
-    const genre = event.target.textContent;
-    const movies = getMovies().filter((movie) => movie.genre.name === genre);
-    this.setState({ movies: movies });
-  };
-
   handleGenreSelect = (genre) => {
-    console.log(genre);
+    this.setState({ selectedGenre: genre });
   };
 
   render() {
@@ -64,10 +58,11 @@ class Movies extends Component {
         <div className="col-3">
           <ListGroup
             items={this.state.genres}
+            selectedItem={this.state.selectedGenre}
             textProperty="name"
             onItemSelect={this.handleGenreSelect}
-            genres={getGenres().map((genre) => genre.name)} // returns ['Action', 'Comedy', 'Thriller']
-            onGenreChange={(event) => this.handleGenreChange(event)}
+            // genres={getGenres().map((genre) => genre.name)} // returns ['Action', 'Comedy', 'Thriller']
+            // onGenreChange={(event) => this.handleGenreChange(event)}
           />
         </div>
         <div className="col">

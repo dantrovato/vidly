@@ -57,7 +57,8 @@ class Movies extends Component {
       sortColumn.path = path;
       sortColumn.order = "asc";
     }
-    this.setState({ sortColumn: { path, order: "asc" } });
+
+    this.setState({ sortColumn });
   };
 
   render() {

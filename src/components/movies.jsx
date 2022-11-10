@@ -74,8 +74,6 @@ class Movies extends Component {
 
     // the below two lines are equivalent
     //             _.orderBy(filtered, ["title"], ["desc"]);
-    // console.log(sortColumn);
-    console.log(sortColumn.order);
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
     // const sorted = _.orderBy(filtered, ["title"], ["desc"]);
     const movies = paginate(sorted, currentPage, pageSize);

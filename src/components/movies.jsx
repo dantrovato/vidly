@@ -24,7 +24,11 @@ class Movies extends Component {
   }
 
   handleDelete = (movie) => {
-    const movies = this.state.movies.filter((m) => m._id !== movie._id);
+    const movies = this.state.movies.filter((m) => {
+      // debugger;
+      return m._id !== movie._id;
+    });
+    console.log(movies);
     this.setState({ movies: movies });
   };
 

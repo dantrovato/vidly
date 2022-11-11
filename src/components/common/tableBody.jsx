@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import _ from "lodash";
 import Like from "./like";
+// attemp number 2
 
 class TableBody extends Component {
   renderCell = (item, column) => {
@@ -17,9 +18,11 @@ class TableBody extends Component {
     return (
       <tbody>
         {data.map((item) => (
-          <tr>
+          <tr key={item._id}>
             {columns.map((column) => (
-              <td>{this.renderCell(item, column)}</td>
+              <td key={this.createKey(item, column)}>
+                {this.renderCell(item, column)}
+              </td>
             ))}
           </tr>
         ))}

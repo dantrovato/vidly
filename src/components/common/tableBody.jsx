@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 import _ from "lodash";
+import Like from "./like";
 
 class TableBody extends Component {
   renderCell = (item, column) => {
-    // return _.get(item, column.path);
-    const result = _.get(item, column.path);
-    if (column.path === "title") {
-      return <a href={`/${item._id}`}>{result}</a>;
-    } else {
-      return result;
-    }
+    if (column.content) return column.content(item);
+    return _.get(item, column.path);
   };
 
   createKey = (item, column) => {
@@ -21,11 +17,9 @@ class TableBody extends Component {
     return (
       <tbody>
         {data.map((item) => (
-          <tr key={item._id}>
+          <tr>
             {columns.map((column) => (
-              <td key={this.createKey(item, column)}>
-                {this.renderCell(item, column)}
-              </td>
+              <td>{this.renderCell(item, column)}</td>
             ))}
           </tr>
         ))}
